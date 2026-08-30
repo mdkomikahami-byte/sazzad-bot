@@ -9,29 +9,29 @@ bot.onText(/\/start/, (msg) => {
   bot.sendSticker(chatId, stickerUrl).catch(() => {}).finally(() => {
     const options = {
       reply_markup: {
-        keyboard: [
-          ['👤 User', '💰 Deposit'],
-          ['💸 Withdraw', '❓ Help']
-        ],
-        resize_keyboard: true,
-        one_time_keyboard: false
+        inline_keyboard: [
+          [{ text: '👤 User', callback_data: 'user' }, { text: '💰 Deposit', callback_data: 'deposit' }],
+          [{ text: '💸 Withdraw', callback_data: 'withdraw' }, { text: '❓ Help', callback_data: 'help' }]
+        ]
       }
     };
     bot.sendMessage(chatId, 'হ্যালো! মূল মেনুতে আপনাকে স্বাগতম। নিচের বাটনগুলো থেকে আপনার পছন্দ নির্বাচন করুন:', options);
   });
 });
 
-bot.on('message', (msg) => {
-  const chatId = msg.chat.id;
-  const text = msg.text;
+bot.on('callback_query', (query) => {
+  const chatId = query.message.chat.id;
+  const data = query.data;
 
-  if (text === '👤 User') {
+  if (data === 'user') {
     bot.sendMessage(chatId, 'এটি আপনার প্রোফাইল। আপনার বিস্তারিত তথ্য এখানে দেখাবে।');
-  } else if (text === '💰 Deposit') {
+  } else if (data === 'deposit') {
     bot.sendMessage(chatId, 'ডিপোজিট করার জন্য আপনার পেমেন্ট মেথড নির্বাচন করুন।');
-  } else if (text === '💸 Withdraw') {
+  } else if (data === 'withdraw') {
     bot.sendMessage(chatId, 'উত্তোলন করার জন্য আপনার ব্যালেন্স এবং মাধ্যম দিন।');
-  } else if (text === '❓ Help') {
+  } else if (data === 'help') {
     bot.sendMessage(chatId, 'যেকোনো সাহায্যের জন্য আমাদের সাপোর্ট টিমের সাথে যোগাযোগ করুন।');
   }
+
+  bot.answerCallbackQuery(query.id);
 });
