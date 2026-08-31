@@ -1,11 +1,13 @@
 {
-  "name": "sazzad-bot",
+  "name": "telegram-mining-bot",
   "version": "1.0.0",
+  "description": "Telegram Mining Bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "node-telegram-bot-api": "^0.66.0"
+    "firebase-admin": "^11.0.0",
+    "node-telegram-bot-api": "^0.61.0"
   }
 }
