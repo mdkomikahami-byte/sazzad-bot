@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const admin = require('firebase-admin');
 
-const token = '8979906112:AAEhYqq0QlSjJnCbg7xMIvelx-3q-J5-XUg';
+const token = '8893361874:AAFoO7gEC2I0auA9s166sd1e4wT718f7Jts';
 const bot = new TelegramBot(token, { polling: true });
 
 const CheckJoin = require('./CheckJoin');
